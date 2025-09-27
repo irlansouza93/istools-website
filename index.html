@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irlan Souza Tools - Tutorial e Guia Completo</title>
+    <meta name="description" content="Tutorial completo do ISTools - Plugin profissional de vetorização para QGIS. Aprenda a usar todas as ferramentas de forma prática e eficiente.">
+    <meta name="keywords" content="QGIS, plugin, vetorização, ISTools, tutorial, GIS, georreferenciamento">
+    <meta name="author" content="Irlan Souza">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="ISTools - Tutorial e Guia Completo">
+    <meta property="og:description" content="Tutorial completo do ISTools - Plugin profissional de vetorização para QGIS">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://irlansouza93.github.io/istools/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../icon_istools.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="#" class="nav-logo-link" id="homeButton">
+                        <img src="../icon_istools.png" alt="ISTools Logo" class="nav-logo">
+                        <span>ISTools</span>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#tutorial" class="nav-link">Tutorial</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#autor" class="nav-link">Sobre o Autor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/irlansouza93/istools" class="nav-link" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </li>
+                </ul>
+                <div class="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Irlan Souza Tools</span>
+                    <br>Tutorial Completo
+                </h1>
+                <p class="hero-description">
+                    Aprenda a dominar o plugin profissional de vetorização para QGIS. 
+                    Guias práticos, exemplos detalhados e dicas avançadas para maximizar sua produtividade.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#tutorial" class="btn btn-primary">
+                        <i class="fas fa-play"></i>
+                        Começar Tutorial
+                    </a>
+                    <a href="https://github.com/irlansouza93/istools/releases" class="btn btn-secondary" target="_blank">
+                        <i class="fas fa-download"></i>
+                        Download Plugin
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="card-header">
+                        <div class="card-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="card-title">QGIS - ISTools</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="tool-item">
+                            <i class="fas fa-vector-square"></i>
+                            <span>Extend Lines</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-shapes"></i>
+                            <span>Polygon Generator</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-crop-alt"></i>
+                            <span>Bounded Polygon</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-map-pin"></i>
+                            <span>Point on Surface</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-route"></i> <!-- ou fas fa-bezier-curve, fas fa-project-diagram -->
+                            <span>Intersection Line</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorial Section -->
+    <section id="tutorial" class="tutorial">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Tutorial Completo</h2>
+                <p class="section-description">
+                    Domine todas as ferramentas do ISTools com guias práticos e exemplos reais
+                </p>
+            </div>
+
+            <!-- Installation Guide -->
+            <div class="tutorial-section">
+                <h3 class="tutorial-title">
+                    <i class="fas fa-download"></i>
+                    Instalação do Plugin
+                </h3>
+                <div class="tutorial-content">
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Download do Plugin</h4>
+                                <p>Baixe a versão mais recente do ISTools no GitHub Releases ou instale diretamente pelo repositório de plugins do QGIS.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Instalação no QGIS</h4>
+                                <p>Vá em <strong>Plugins → Gerenciar e Instalar Plugins</strong> e procure por "ISTools" ou instale a partir do arquivo ZIP baixado.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Ativação das Ferramentas</h4>
+                                <p>Após a instalação, as ferramentas aparecerão no menu <strong>Vetor → ISTools</strong> e na barra de ferramentas personalizada.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools Tutorial -->
+            <div class="tools-grid">
+                <!-- Extend Lines Tool -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-vector-square"></i>
+                        </div>
+                        <h3>Extend Lines</h3>
+                        <p>Estende linhas soltas até tocarem outras linhas</p>
+                    </div>
+                    <div class="tool-body">
+                        <h4>Como usar:</h4>
+                        <ol>
+                            <li>Selecione a camada de linhas no painel de camadas</li>
+                            <li>Clique na ferramenta "Extend Lines"</li>
+                            <li>Configure a distância máxima de extensão</li>
+                            <li>Execute a operação e veja as linhas sendo estendidas automaticamente</li>
+                        </ol>
+                        <div class="tool-tip">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Dica:</strong> Use esta ferramenta para conectar linhas que ficaram com pequenas lacunas durante a digitalização.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Polygon Generator Tool -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-shapes"></i>
+                        </div>
+                        <h3>Polygon Generator</h3>
+                        <p>Gera polígonos a partir de linhas ou áreas ao redor de um ponto</p>
+                    </div>
+                    <div class="tool-body">
+                        <h4>Como usar:</h4>
+                        <ol>
+                            <li>Ative a ferramenta "Polygon Generator"</li>
+                            <li>Clique em um ponto no mapa onde deseja gerar o polígono</li>
+                            <li>A ferramenta identificará automaticamente as linhas ao redor</li>
+                            <li>Um novo polígono será criado na camada de destino</li>
+                        </ol>
+                        <div class="tool-tip">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Dica:</strong> Ideal para criar polígonos a partir de redes de linhas complexas, como loteamentos ou divisões territoriais.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bounded Polygon Generator Tool -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-crop-alt"></i>
+                        </div>
+                        <h3>Bounded Polygon Generator</h3>
+                        <p>Gera polígonos limitados por um quadro de referência</p>
+                    </div>
+                    <div class="tool-body">
+                        <h4>Como usar:</h4>
+                        <ol>
+                            <li>Defina uma camada com o quadro limitador (frame)</li>
+                            <li>Selecione as camadas de linhas ou polígonos de referência</li>
+                            <li>Ative a ferramenta "Bounded Polygon Generator"</li>
+                            <li>Os polígonos serão gerados respeitando os limites do quadro</li>
+                        </ol>
+                        <div class="tool-tip">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Dica:</strong> Perfeito para criar polígonos em áreas específicas, respeitando limites administrativos ou de projeto.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point on Surface Generator Tool -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-map-pin"></i>
+                        </div>
+                        <h3>Point on Surface Generator</h3>
+                        <p>Gera pontos dentro de polígonos selecionados</p>
+                    </div>
+                    <div class="tool-body">
+                        <h4>Como usar:</h4>
+                        <ol>
+                            <li>Selecione os polígonos na camada desejada</li>
+                            <li>Execute a ferramenta "Point on Surface Generator"</li>
+                            <li>Configure a camada de destino para os pontos</li>
+                            <li>Os pontos serão criados no centroide de cada polígono</li>
+                        </ol>
+                        <div class="tool-tip">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Dica:</strong> Útil para criar pontos de referência, rótulos ou análises espaciais baseadas em centroides.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intersection Line Tool -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <h3>Intersection Line</h3>
+                        <p>Insere vértices compartilhados nas interseções de linhas</p>
+                    </div>
+                    <div class="tool-body">
+                        <h4>Como usar:</h4>
+                        <ol>
+                            <li>Ative a ferramenta "Intersection Line"</li>
+                            <li>Desenhe uma área de seleção no mapa</li>
+                            <li>A ferramenta identificará todas as interseções de linhas na área</li>
+                            <li>Vértices compartilhados serão inseridos automaticamente</li>
+                        </ol>
+                        <div class="tool-tip">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Dica:</strong> Essencial para garantir topologia correta em redes de linhas, evitando problemas de conectividade.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- Author Section -->
+    <section id="autor" class="author">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sobre o Autor</h2>
+                <p class="section-description">
+                    Conheça o desenvolvedor por trás do ISTools
+                </p>
+            </div>
+            
+            <div class="author-content">
+                <div class="author-photo">
+                    <div class="photo-placeholder">
+                        <img src="author.png" alt="Irlan Souza" class="author-image">
+                    </div>
+                </div>
+                
+                <div class="author-info">
+                    <h3 class="author-name">Irlan Souza</h3>
+                    <p class="author-title">3° Sgt Exército Brasileiro | Desenvolvedor GIS</p>
+                    
+                    <div class="author-bio">
+                        <p>
+                            Profissional especializado em Sistemas de Informação Geográfica (SIG) com vasta experiência 
+                            no desenvolvimento de soluções geoespaciais. Como 3° Sargento do Exército Brasileiro, combina 
+                            conhecimento militar com expertise técnica em geotecnologias.
+                        </p>
+                        <p>
+                            Desenvolvedor do ISTools, plugin profissional para QGIS que revoluciona processos de 
+                            vetorização e análise espacial. Apaixonado por criar ferramentas que aumentam a 
+                            produtividade e precisão em projetos de mapeamento e análise geográfica.
+                        </p>
+                        <p>
+                            Especialista em Python, QGIS, desenvolvimento de plugins e automação de processos 
+                            geoespaciais. Sempre em busca de inovações que possam beneficiar a comunidade GIS.
+                        </p>
+                    </div>
+                    
+                    <div class="author-stats">
+                        <div class="stat">
+                            <i class="fas fa-code"></i>
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Anos de Experiência</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-puzzle-piece"></i>
+                            <span class="stat-number">10+</span>
+                            <span class="stat-label">Ferramentas Desenvolvidas</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span class="stat-number">1000+</span>
+                            <span class="stat-label">Usuários Atendidos</span>
+                        </div>
+                    </div>
+                    
+                    <div class="author-contact">
+                        <h4>Conecte-se</h4>
+                        <div class="contact-links">
+                            <a href="mailto:irlansouza193@gmail.com" class="contact-link">
+                                <i class="fas fa-envelope"></i>
+                                <span>irlansouza193@gmail.com</span>
+                            </a>
+                            <a href="https://github.com/irlansouza93" class="contact-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://wa.me/+5581999500467?text=Olá! Vim através do site do ISTools e gostaria de mais informações." class="contact-link" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>WhatsApp</span>
+                            </a>
+                            <a href="https://irlansouza93.github.io/istools-website/" class="contact-link" target="_blank">
+                                <i class="fas fa-globe"></i>
+                                <span>Site Oficial</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="../icon_istools.png" alt="ISTools Logo" class="footer-logo">
+                    <span class="footer-title">ISTools</span>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/irlansouza93/istools" target="_blank">GitHub</a>
+                    <a href="https://github.com/irlansouza93/istools/issues" target="_blank">Suporte</a>
+                    <a href="https://github.com/irlansouza93/istools/releases" target="_blank">Downloads</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTools. Desenvolvido por Irlan Souza. Licenciado sob GPL v2.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
