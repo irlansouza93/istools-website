@@ -59,7 +59,7 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: .48;
+  opacity: .7;
   mix-blend-mode: multiply;
 }
 
@@ -299,7 +299,9 @@ body {
   font-size: 12px;
 }
 
-.author-photo .author-dark { display: none; }
+.author-avatar { display: none; }
+.author-photo .author-dark,
+.author-avatar .author-dark { display: none; }
 
 .dark-mode {
   --paper: #081c18;
@@ -312,7 +314,7 @@ body {
 .dark-mode .site-header { background: rgba(8, 28, 24, .94); }
 .dark-mode .site-header a, .dark-mode .brand { color: #ecf6ee; }
 .dark-mode .theme-toggle { color: #b9e65b; background: #14392f; border-color: #295a49; }
-.dark-mode .hero-topo { opacity: .34; mix-blend-mode: screen; }
+.dark-mode .hero-topo { opacity: .46; mix-blend-mode: screen; }
 .dark-mode .kinetic-title { color: #f2faf3; text-shadow: 0 3px 24px #000; }
 .dark-mode .kinetic-title .type-line,
 .dark-mode .kinetic-title .headline-reveal em { color: #b9e65b; }
@@ -325,8 +327,10 @@ body {
 .dark-mode .install-path,
 .dark-mode .rating-copy ol { color: #c7d9d0; }
 .dark-mode .button.repository { border-color: #376355; color: #edf7f0; }
-.dark-mode .author-photo .author-light { display: none; }
-.dark-mode .author-photo .author-dark { display: block; }
+.dark-mode .author-photo .author-light,
+.dark-mode .author-avatar .author-light { display: none; }
+.dark-mode .author-photo .author-dark,
+.dark-mode .author-avatar .author-dark { display: block; }
 
 @keyframes headlineClip {
   from { opacity: 0; clip-path: inset(-.24em 100% -.28em -.1em); transform: translateX(-18px); }
@@ -385,6 +389,36 @@ body {
     grid-template-columns: 1fr;
     gap: 34px;
   }
+  .author-section {
+    display: block;
+    padding-bottom: 75px;
+  }
+  .author-photo-desktop { display: none; }
+  .author-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 13px;
+  }
+  .author-avatar {
+    display: block;
+    width: 72px;
+    height: 72px;
+    flex: 0 0 72px;
+    overflow: hidden;
+    border: 2px solid rgba(7, 94, 80, .25);
+    border-radius: 50%;
+    background: #c6d6ce;
+    box-shadow: 0 9px 24px rgba(12, 40, 33, .14);
+  }
+  .author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  .author-heading .eyebrow { margin-bottom: 7px; }
+  .author-heading h2 { margin: 0; font-size: clamp(29px, 9vw, 38px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

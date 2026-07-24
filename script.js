@@ -37,6 +37,7 @@ if (topoCanvas) {
   let canvasHeight = 0;
   let lastFrame = 0;
   let animationFrame = 0;
+  const pointer = { x: 0, y: 0, targetX: 0, targetY: 0, strength: 0, targetStrength: 0, ready: false };
 
   const resizeTopography = () => {
     const bounds = hero.getBoundingClientRect();
@@ -46,14 +47,22 @@ if (topoCanvas) {
     topoCanvas.width = Math.round(canvasWidth * pixelRatio);
     topoCanvas.height = Math.round(canvasHeight * pixelRatio);
     context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    if (!pointer.ready) {
+      pointer.x = pointer.targetX = canvasWidth * .62;
+      pointer.y = pointer.targetY = canvasHeight * .48;
+      pointer.ready = true;
+    }
   };
 
   const drawTopography = (time = 0) => {
     context.clearRect(0, 0, canvasWidth, canvasHeight);
     const scale = Math.min(canvasWidth, canvasHeight);
     const dark = document.body.classList.contains('dark-mode');
-    context.strokeStyle = dark ? 'rgba(157, 205, 182, .5)' : 'rgba(47, 82, 72, .48)';
-    context.lineWidth = Math.max(.75, Math.min(1.45, canvasWidth / 1250));
+    pointer.x += (pointer.targetX - pointer.x) * .12;
+    pointer.y += (pointer.targetY - pointer.y) * .12;
+    pointer.strength += (pointer.targetStrength - pointer.strength) * .1;
+    context.strokeStyle = dark ? 'rgba(171, 220, 197, .66)' : 'rgba(39, 77, 67, .62)';
+    context.lineWidth = Math.max(.9, Math.min(1.6, canvasWidth / 1100));
     context.lineJoin = 'round';
     context.lineCap = 'round';
 
@@ -69,8 +78,16 @@ if (topoCanvas) {
             Math.sin(angle * 3 + family.phase + drift + ring * .17) * .075 +
             Math.sin(angle * 7 - family.phase * .6 - drift * 1.4 + ring * .11) * .032 +
             Math.cos(angle * 11 + ring * .23) * .014;
-          const x = family.x * canvasWidth + Math.cos(angle) * radius * (1 + irregularity);
-          const y = family.y * canvasHeight + Math.sin(angle) * verticalRadius * (1 + irregularity * 1.35);
+          let x = family.x * canvasWidth + Math.cos(angle) * radius * (1 + irregularity);
+          let y = family.y * canvasHeight + Math.sin(angle) * verticalRadius * (1 + irregularity * 1.35);
+          const pointerX = x - pointer.x;
+          const pointerY = y - pointer.y;
+          const pointerDistance = Math.hypot(pointerX, pointerY) || 1;
+          const influenceRadius = Math.max(190, scale * .42);
+          const influence = Math.max(0, 1 - pointerDistance / influenceRadius) * pointer.strength;
+          const pulse = Math.sin(pointerDistance * .032 - time * .0045) * 8;
+          x += (pointerX / pointerDistance) * influence * (30 + pulse);
+          y += (pointerY / pointerDistance) * influence * (30 + pulse);
           if (point === 0) context.moveTo(x, y);
           else context.lineTo(x, y);
         }
@@ -79,6 +96,26 @@ if (topoCanvas) {
         context.stroke();
       }
     });
+
+    if (pointer.strength > .01) {
+      context.strokeStyle = dark ? 'rgba(185, 230, 91, .8)' : 'rgba(7, 94, 80, .72)';
+      context.lineWidth = 1.15;
+      for (let ring = 0; ring < 5; ring += 1) {
+        const radius = 34 + ring * 25 + Math.sin(time * .002 + ring) * 3;
+        context.beginPath();
+        for (let point = 0; point <= 64; point += 1) {
+          const angle = point / 64 * Math.PI * 2;
+          const wobble = 1 + Math.sin(angle * 5 + ring * .8 + time * .0012) * .055;
+          const x = pointer.x + Math.cos(angle) * radius * wobble;
+          const y = pointer.y + Math.sin(angle) * radius * .68 * wobble;
+          if (point === 0) context.moveTo(x, y);
+          else context.lineTo(x, y);
+        }
+        context.closePath();
+        context.globalAlpha = pointer.strength * (.42 - ring * .055);
+        context.stroke();
+      }
+    }
     context.globalAlpha = 1;
   };
 
@@ -96,6 +133,20 @@ if (topoCanvas) {
     drawTopography();
     if (!reducedMotion.matches && !document.hidden) animationFrame = requestAnimationFrame(animateTopography);
   };
+
+  const updatePointer = (event) => {
+    const bounds = hero.getBoundingClientRect();
+    pointer.targetX = event.clientX - bounds.left;
+    pointer.targetY = event.clientY - bounds.top;
+    pointer.targetStrength = 1;
+    if (reducedMotion.matches) drawTopography(performance.now());
+  };
+
+  hero.addEventListener('pointermove', updatePointer, { passive: true });
+  hero.addEventListener('pointerdown', updatePointer, { passive: true });
+  hero.addEventListener('pointerleave', () => { pointer.targetStrength = 0; });
+  hero.addEventListener('pointerup', (event) => { if (event.pointerType !== 'mouse') pointer.targetStrength = 0; });
+  hero.addEventListener('pointercancel', () => { pointer.targetStrength = 0; });
 
   if ('ResizeObserver' in window) new ResizeObserver(startTopography).observe(hero);
   else window.addEventListener('resize', startTopography, { passive: true });
