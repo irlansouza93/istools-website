@@ -111,11 +111,13 @@ if (topoCanvas) {
 
   const startTopography = () => {
     cancelAnimationFrame(animationFrame);
+    resizeTopography();
     if (mobileView.matches) {
-      context.clearRect(0, 0, canvasWidth, canvasHeight);
+      pointer.strength = 0;
+      pointer.targetStrength = 0;
+      drawTopography(0);
       return;
     }
-    resizeTopography();
     drawTopography();
     if (!reducedMotion.matches && !document.hidden) animationFrame = requestAnimationFrame(animateTopography);
   };
@@ -140,7 +142,7 @@ if (topoCanvas) {
   reducedMotion.addEventListener?.('change', startTopography);
   mobileView.addEventListener?.('change', startTopography);
   document.addEventListener('visibilitychange', startTopography);
-  themeToggle?.addEventListener('click', () => { if (!mobileView.matches) requestAnimationFrame(() => drawTopography(lastFrame)); });
+  themeToggle?.addEventListener('click', () => requestAnimationFrame(() => drawTopography(mobileView.matches ? 0 : lastFrame)));
   startTopography();
 }
 
