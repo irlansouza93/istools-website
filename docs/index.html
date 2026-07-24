@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Documentação didática do plugin ISTools para QGIS.">
+  <title>Documentação | ISTools</title>
+  <link rel="icon" href="../icon_istools.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+  <header><a class="brand" href="../"><img src="../icon_istools.png" alt="ISTools">ISTools <span>/ Docs</span></a><a href="../" class="back"><i class="fa-solid fa-arrow-left"></i> Início</a></header>
+  <div class="layout">
+    <aside>
+      <p>GUIA DO PLUGIN</p>
+      <a href="#instalacao">Instalação</a>
+      <a href="#vetorizacao">Vetorização</a>
+      <a href="#simplificador">Simplificador Suave</a>
+      <a href="#intersecao">Interseção de Linhas</a>
+      <a href="#processamento">Processamento</a>
+      <a href="#dados">Dados e PostGIS</a>
+      <a href="#edgv">ETL EDGV</a>
+      <a href="#boas-praticas">Boas práticas</a>
+    </aside>
+    <main>
+      <p class="eyebrow">ISTools v1.5.1</p>
+      <h1>Referência das ferramentas disponíveis no QGIS.</h1>
+      <p class="intro">Os ícones abaixo são os mesmos exibidos nos menus e na barra do ISTools. Use esta referência para identificar cada comando, preparar os dados e revisar o resultado.</p>
+
+      <section id="instalacao">
+        <h2>Instalação</h2>
+        <div class="callout"><i class="fa-solid fa-circle-info"></i><p>Antes de instalar ou atualizar, salve as edições pendentes e o projeto aberto no QGIS.</p></div>
+        <h3>Pelo gerenciador oficial do QGIS</h3>
+        <ol>
+          <li>No QGIS, abra <strong>Complementos &gt; Gerenciar e Instalar Complementos</strong>.</li>
+          <li>Na aba <strong>Todos</strong>, pesquise por <strong>ISTools</strong>.</li>
+          <li>Selecione o plugin e clique em <strong>Instalar Complemento</strong>.</li>
+          <li>Depois da instalação, confirme que o menu <strong>ISTools</strong> aparece na barra principal.</li>
+        </ol>
+        <div class="doc-actions"><a class="doc-button" href="https://plugins.qgis.org/plugins/istools/" target="_blank" rel="noreferrer"><i class="fa-solid fa-puzzle-piece"></i> Página oficial no QGIS</a><a class="doc-button secondary" href="https://github.com/irlansouza93/istools" target="_blank" rel="noreferrer"><i class="fa-brands fa-github"></i> Repositório e README</a></div>
+        <h3>Instalação manual</h3>
+        <p>Baixe o ZIP de uma versão publicada no GitHub. No gerenciador de complementos, abra <strong>Instalar a partir do ZIP</strong>, escolha o arquivo e confirme. Esse método é indicado para testar uma versão específica.</p>
+      </section>
+
+      <section id="vetorizacao">
+        <h2>Ferramentas de vetorização</h2>
+        <p>As ações desta categoria trabalham com a camada ativa, as feições selecionadas ou uma região indicada no mapa.</p>
+
+        <article class="tool-card">
+          <div class="tool-title"><img src="assets/icons/icon_extend_lines.png" alt="Ícone Estender Linhas"><div><span>ISTools › Ferramentas de Vetorização</span><h3>Estender Linhas</h3></div></div>
+          <p>Prolonga extremidades soltas até que encontrem uma linha de destino dentro da distância de busca.</p>
+          <ol><li>Ative a camada linear que contém as extremidades a corrigir.</li><li>Abra <strong>Estender Linhas</strong> e informe uma distância compatível com a escala do dado.</li><li>Execute em uma área pequena e confira se a conexão foi feita com a feição correta.</li><li>Revise a topologia antes de salvar as edições.</li></ol>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-title"><img src="assets/icons/icon_polygon_generator.png" alt="Ícone Gerador de Polígonos"><div><span>ISTools › Ferramentas de Vetorização</span><h3>Gerador de Polígonos</h3></div></div>
+          <p>Constrói um polígono a partir das linhas ou áreas que delimitam o ponto indicado no mapa.</p>
+          <ol><li>Verifique se a rede delimitadora está visível e sem lacunas.</li><li>Ative a ferramenta e clique dentro da área desejada.</li><li>Confirme a camada de destino e revise a geometria criada.</li></ol>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-title"><img src="assets/icons/icon_bounded_polygon_generator.png" alt="Ícone Gerador de Polígonos Limitados"><div><span>ISTools › Ferramentas de Vetorização</span><h3>Gerador de Polígonos Limitados</h3></div></div>
+          <p>Gera áreas respeitando uma moldura e as camadas lineares ou poligonais que funcionam como limites internos.</p>
+          <ol><li>Defina a camada de moldura.</li><li>Selecione as camadas que participarão da delimitação.</li><li>Execute a ferramenta e inspecione bordas, vazios e sobreposições.</li></ol>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-title"><img src="assets/icons/icon_point_on_surface_generator.png" alt="Ícone Gerador de Pontos na Superfície"><div><span>ISTools › Ferramentas de Vetorização</span><h3>Gerador de Pontos na Superfície</h3></div></div>
+          <p>Cria um ponto garantidamente interno para cada polígono selecionado, evitando centroides localizados fora de feições côncavas.</p>
+          <ol><li>Ative a camada de polígonos e selecione as feições.</li><li>Execute a ferramenta e escolha a camada de pontos de destino.</li><li>Confira a quantidade e os atributos dos pontos produzidos.</li></ol>
+        </article>
+      </section>
+
+      <section id="simplificador">
+        <h2>Simplificação de linhas</h2>
+        <article class="tool-card">
+          <div class="tool-title"><img src="assets/icons/icon_smooth_simplifier.png" alt="Ícone Simplificador Suave"><div><span>ISTools › Ferramentas de Vetorização</span><h3>Simplificador Suave</h3></div></div>
+          <p>Reduz vértices de <strong>linhas selecionadas</strong> com tolerância fina. A alteração integra o histórico de edição e pode ser desfeita com <kbd>Ctrl</kbd> + <kbd>Z</kbd>.</p>
+          <ol><li>Ative uma camada linear editável e selecione somente as feições desejadas.</li><li>Execute <strong>Simplificador Suave</strong>.</li><li>Leia a mensagem com a redução de vértices.</li><li>Revise curvas, limites legais e detalhes cartográficos antes de salvar.</li></ol>
+          <div class="warning"><i class="fa-solid fa-triangle-exclamation"></i><p>Mesmo com tolerância sutil, valide o resultado na escala de produção.</p></div>
+        </article>
+      </section>
+
+      <section id="intersecao">
+        <h2>Manutenção topológica</h2>
+        <article class="tool-card">
+          <div class="tool-title"><img src="assets/icons/icon_intersection_line.png" alt="Ícone Interseção de Linhas"><div><span>ISTools › Ferramentas de Vetorização</span><h3>Interseção de Linhas</h3></div></div>
+          <p>Insere vértices compartilhados nos cruzamentos encontrados dentro da área desenhada pelo operador.</p>
+          <ol><li>Deixe visíveis somente as camadas lineares relacionadas à operação.</li><li>Ative a ferramenta e desenhe o retângulo da área de interesse.</li><li>O ISTools identifica as interseções e edita apenas as camadas que recebem vértices.</li><li>Verifique a conectividade e salve as camadas modificadas.</li></ol>
+        </article>
+      </section>
+
+      <section id="processamento">
+        <h2>Processamento multicamadas</h2>
+        <article class="tool-card">
+          <div class="tool-title"><img src="assets/icons/recortar_por_moldura.png" alt="Ícone Recortar por Moldura"><div><span>ISTools › Ferramentas de Geoprocessamento</span><h3>Recortar por Moldura (Multicamadas)</h3></div></div>
+          <p>Filtra e recorta várias camadas de destino usando uma única moldura espacial.</p>
+          <ol><li>Selecione a camada que representa a moldura.</li><li>Marque as camadas que serão processadas.</li><li>Defina o destino dos resultados e execute.</li><li>Compare contagem de feições, extensão e sistema de referência das saídas.</li></ol>
+        </article>
+      </section>
+
+      <section id="dados">
+        <h2>Dados e PostGIS</h2>
+
+        <article class="tool-card">
+          <div class="tool-title"><img src="assets/icons/carregar_banco_shape.png" alt="Ícone Carregar Banco Shape"><div><span>ISTools › Ferramentas de Banco de Dados</span><h3>Carregar Banco Shape</h3></div></div>
+          <p>Carrega os Shapefiles de uma pasta e organiza as camadas no projeto atual.</p>
+          <ol><li>Informe a pasta que contém os arquivos.</li><li>Revise as camadas reconhecidas.</li><li>Confirme o carregamento e verifique codificação, SRC e nomes apresentados no painel.</li></ol>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-title"><img src="assets/icons/icon_server_config.png" alt="Ícone Configurar Servidores"><div><span>ISTools › Ferramentas de Banco de Dados</span><h3>Configurar Servidores</h3></div></div>
+          <p>Registra e gerencia as conexões PostGIS utilizadas pelas rotinas de banco e ETL.</p>
+          <ol><li>Informe host, porta, usuário e parâmetros de conexão.</li><li>Teste o acesso antes de salvar.</li><li>Use contas com somente as permissões necessárias para a operação.</li></ol>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-title"><img src="assets/icons/icon_db_manager.png" alt="Ícone Gerenciador de Banco de Dados"><div><span>ISTools › Ferramentas de Banco de Dados</span><h3>Gerenciador de Banco de Dados</h3></div></div>
+          <p>Centraliza operações de criação, backup, restauração e reinicialização de bancos PostGIS.</p>
+          <ol><li>Escolha o servidor e o banco com atenção.</li><li>Confirme o tipo de operação e o arquivo de origem ou destino quando solicitado.</li><li>Leia o log final e valide a base antes de disponibilizá-la para produção.</li></ol>
+          <div class="warning"><i class="fa-solid fa-database"></i><p>Operações de restauração ou reinicialização exigem backup verificado e credenciais adequadas.</p></div>
+        </article>
+      </section>
+
+      <section id="edgv">
+        <h2>ETL EDGV</h2>
+        <article class="tool-card">
+          <div class="tool-title"><img src="assets/icons/icon_etl_edgv300.png" alt="Ícone Conversor EDGV"><div><span>ISTools › Ferramentas de Banco de Dados</span><h3>Conversor SHP → PostGIS — EDGV 3.0</h3></div></div>
+          <p>Executa no QGIS a importação e o mapeamento de Shapefiles para uma estrutura PostGIS EDGV 3.0. O projeto também reúne o fluxo de conversão para EDGV Topo 1.4.5 que anteriormente dependia de um processo baseado em FME.</p>
+          <ol><li>Valide os Shapefiles de origem, nomes de classes, atributos e sistema de referência.</li><li>Configure e teste a conexão com o PostGIS.</li><li>Abra o algoritmo EDGV do ISTools, informe origem e destino e execute primeiro em uma base de teste.</li><li>Confira o log, a quantidade de feições por classe e os campos resultantes.</li></ol>
+        </article>
+      </section>
+
+      <section id="boas-praticas">
+        <h2>Boas práticas</h2>
+        <ul><li>Mantenha projeto e banco versionados ou com backup recente.</li><li>Valide uma seleção pequena antes de processar toda a área.</li><li>Revise topologia, atributos, SRC e contagem de feições após operações automáticas.</li><li>Registre erros reproduzíveis na página de issues do projeto.</li></ul>
+        <div class="doc-actions"><a class="doc-button" href="../#avaliar"><i class="fa-solid fa-star"></i> Como avaliar o ISTools</a><a class="doc-button secondary" href="https://github.com/irlansouza93/istools/issues" target="_blank" rel="noreferrer"><i class="fa-solid fa-bug"></i> Relatar um problema</a></div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
