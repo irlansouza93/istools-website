@@ -367,6 +367,7 @@ body {
 
 @media (max-width: 800px) {
   :root { --header-height: 54px; }
+  .hero-topo { display: none; }
   .main-nav { top: var(--header-height); }
   .hero.section-grid {
     height: auto;

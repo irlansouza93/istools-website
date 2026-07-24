@@ -27,6 +27,7 @@ if (topoCanvas) {
   const context = topoCanvas.getContext('2d', { alpha: true });
   const hero = topoCanvas.closest('.hero');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const mobileView = window.matchMedia('(max-width: 800px)');
   const contourFamilies = [
     { x: .02, y: .18, radius: .055, step: .047, rings: 13, stretch: 1.48, phase: .4 },
     { x: .42, y: .57, radius: .045, step: .042, rings: 12, stretch: 1.32, phase: 2.1 },
@@ -97,25 +98,6 @@ if (topoCanvas) {
       }
     });
 
-    if (pointer.strength > .01) {
-      context.strokeStyle = dark ? 'rgba(185, 230, 91, .8)' : 'rgba(7, 94, 80, .72)';
-      context.lineWidth = 1.15;
-      for (let ring = 0; ring < 5; ring += 1) {
-        const radius = 34 + ring * 25 + Math.sin(time * .002 + ring) * 3;
-        context.beginPath();
-        for (let point = 0; point <= 64; point += 1) {
-          const angle = point / 64 * Math.PI * 2;
-          const wobble = 1 + Math.sin(angle * 5 + ring * .8 + time * .0012) * .055;
-          const x = pointer.x + Math.cos(angle) * radius * wobble;
-          const y = pointer.y + Math.sin(angle) * radius * .68 * wobble;
-          if (point === 0) context.moveTo(x, y);
-          else context.lineTo(x, y);
-        }
-        context.closePath();
-        context.globalAlpha = pointer.strength * (.42 - ring * .055);
-        context.stroke();
-      }
-    }
     context.globalAlpha = 1;
   };
 
@@ -129,12 +111,17 @@ if (topoCanvas) {
 
   const startTopography = () => {
     cancelAnimationFrame(animationFrame);
+    if (mobileView.matches) {
+      context.clearRect(0, 0, canvasWidth, canvasHeight);
+      return;
+    }
     resizeTopography();
     drawTopography();
     if (!reducedMotion.matches && !document.hidden) animationFrame = requestAnimationFrame(animateTopography);
   };
 
   const updatePointer = (event) => {
+    if (mobileView.matches) return;
     const bounds = hero.getBoundingClientRect();
     pointer.targetX = event.clientX - bounds.left;
     pointer.targetY = event.clientY - bounds.top;
@@ -151,8 +138,9 @@ if (topoCanvas) {
   if ('ResizeObserver' in window) new ResizeObserver(startTopography).observe(hero);
   else window.addEventListener('resize', startTopography, { passive: true });
   reducedMotion.addEventListener?.('change', startTopography);
+  mobileView.addEventListener?.('change', startTopography);
   document.addEventListener('visibilitychange', startTopography);
-  themeToggle?.addEventListener('click', () => requestAnimationFrame(() => drawTopography(lastFrame)));
+  themeToggle?.addEventListener('click', () => { if (!mobileView.matches) requestAnimationFrame(() => drawTopography(lastFrame)); });
   startTopography();
 }
 
