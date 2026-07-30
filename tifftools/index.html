@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Baixe o TiffTools Pro e consulte o manual completo para comprimir e reprojetar imagens TIFF com o QGIS.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="ISTools">
+  <meta property="og:title" content="TiffTools Pro | Download e manual">
+  <meta property="og:description" content="Aplicativo Windows para comprimir e reprojetar TIFFs muito grandes usando o GDAL instalado com o QGIS.">
+  <meta property="og:url" content="https://irlansouza93.github.io/istools-website/tifftools/">
+  <meta property="og:image" content="https://irlansouza93.github.io/istools-website/assets/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>TiffTools Pro | Download e manual</title>
+  <link rel="icon" type="image/png" href="../assets/tifftools.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../hero.css">
+  <link rel="stylesheet" href="tifftools.css">
+</head>
+<body>
+  <header class="site-header manual-header">
+    <a class="brand" href="../"><img src="../icon_istools.png" alt="ISTools"><span>ISTools</span><small>/ TiffTools Pro</small></a>
+    <button class="menu-button" aria-label="Abrir menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a href="#download">Download</a>
+      <a href="#configuracao">Configuração</a>
+      <a href="#usar">Como usar</a>
+      <a href="#problemas">Solução de problemas</a>
+      <button class="theme-toggle" aria-label="Alternar modo escuro"><i class="fa-solid fa-moon"></i></button>
+      <a class="nav-github" href="https://github.com/irlansouza93/istools-website/blob/main/downloads/TiffToolsPro.exe" target="_blank" rel="noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="tool-hero">
+      <div class="tool-hero-copy">
+        <p class="eyebrow">Aplicativo independente para Windows</p>
+        <h1>TiffTools <em>Pro</em></h1>
+        <p class="tool-summary">Comprima e reprojete imagens TIFF usando o GDAL instalado com o QGIS, com uma interface direta para quem não trabalha com linha de comando.</p>
+        <div class="tool-actions">
+          <a class="button primary" href="../downloads/TiffToolsPro.exe" download><i class="fa-brands fa-windows"></i> Baixar TiffTools Pro</a>
+          <a class="button repository" href="#primeiros-passos"><i class="fa-solid fa-book-open"></i> Ler o manual</a>
+        </div>
+        <dl class="quick-facts">
+          <div><dt>Sistema</dt><dd>Windows x64</dd></div>
+          <div><dt>Build</dt><dd>25/02/2026</dd></div>
+          <div><dt>Tamanho</dt><dd>10,03 MB</dd></div>
+          <div><dt>Dependência</dt><dd>QGIS instalado</dd></div>
+        </dl>
+      </div>
+      <div class="tool-visual" aria-hidden="true">
+        <div class="raster-grid"></div>
+        <div class="tool-icon-wrap"><img src="../assets/tifftools.png" alt=""></div>
+        <div class="process-chip chip-input"><span>ENTRADA</span><b>imagem.tif</b></div>
+        <div class="process-arrow"><i class="fa-solid fa-arrow-right-long"></i></div>
+        <div class="process-chip chip-output"><span>SAÍDA</span><b>imagem_jpeg.tif</b></div>
+      </div>
+    </section>
+
+    <section class="purpose-strip">
+      <i class="fa-solid fa-memory"></i>
+      <div><strong>Feito para fluxos com imagens muito pesadas.</strong><p>Um dos objetivos do TiffTools Pro é reduzir o tamanho em disco e gerar GeoTIFFs organizados em blocos, facilitando a visualização e a manipulação em computadores com menor capacidade de memória. O ganho real varia conforme a imagem e o equipamento.</p></div>
+    </section>
+
+    <div class="manual-layout">
+      <aside class="manual-sidebar" aria-label="Índice do manual">
+        <strong>Neste manual</strong>
+        <a href="#visao-geral">Visão geral</a>
+        <a href="#download">Download seguro</a>
+        <a href="#requisitos">Requisitos</a>
+        <a href="#primeiros-passos">Primeiros passos</a>
+        <a href="#configuracao">Configurar o QGIS</a>
+        <a href="#usar">Comprimir TIFF</a>
+        <a href="#reprojetar">Reprojetar TIFF</a>
+        <a href="#imagens-pesadas">Imagens muito grandes</a>
+        <a href="#resultados">Arquivos gerados</a>
+        <a href="#problemas">Solução de problemas</a>
+        <a href="#seguranca">Segurança e integridade</a>
+      </aside>
+
+      <article class="manual-content">
+        <section id="visao-geral" class="manual-section">
+          <p class="section-kicker">01 · Visão geral</p>
+          <h2>O que é o TiffTools Pro?</h2>
+          <p>O TiffTools Pro é um aplicativo complementar do ecossistema ISTools para processar um ou vários arquivos <code>.tif</code> ou <code>.tiff</code>. Ele oferece duas operações principais:</p>
+          <div class="concept-grid">
+            <div><i class="fa-solid fa-compress"></i><h3>Compressão</h3><p>Gera uma cópia GeoTIFF com compressão JPEG, organização em blocos e arquivo mundial <code>.tfw</code>.</p></div>
+            <div><i class="fa-solid fa-earth-americas"></i><h3>Reprojeção</h3><p>Converte a imagem para outro sistema de referência por meio do algoritmo GDAL do QGIS.</p></div>
+          </div>
+          <div class="notice neutral"><i class="fa-solid fa-circle-info"></i><p><strong>Aplicativo externo:</strong> ele não é instalado dentro do QGIS e não integra o ZIP do plugin ISTools. O plugin apenas abre esta página para download e consulta.</p></div>
+        </section>
+
+        <section id="download" class="manual-section">
+          <p class="section-kicker">02 · Download</p>
+          <h2>Baixe somente a compilação oficial.</h2>
+          <p>A distribuição contém apenas o executável mais recente. Não é necessário instalar: salve o arquivo em uma pasta permanente e abra-o com dois cliques.</p>
+          <div class="download-card">
+            <img src="../assets/tifftools.png" alt="Ícone do TiffTools Pro">
+            <div><h3>TiffToolsPro.exe</h3><p>Windows x64 · build 25/02/2026 · 10.519.193 bytes</p><span>SHA-256 verificado</span></div>
+            <a class="button primary" href="../downloads/TiffToolsPro.exe" download><i class="fa-solid fa-download"></i> Baixar</a>
+          </div>
+          <div class="secondary-download"><a href="https://github.com/irlansouza93/istools-website/blob/main/downloads/TiffToolsPro.exe" target="_blank" rel="noreferrer"><i class="fa-brands fa-github"></i> Consultar e baixar pelo GitHub</a></div>
+        </section>
+
+        <section id="requisitos" class="manual-section">
+          <p class="section-kicker">03 · Antes de começar</p>
+          <h2>Requisitos do computador</h2>
+          <ul class="check-list">
+            <li><i class="fa-solid fa-check"></i><span><strong>Windows de 64 bits.</strong> Esta compilação foi gerada para arquitetura x64.</span></li>
+            <li><i class="fa-solid fa-check"></i><span><strong>QGIS instalado.</strong> O aplicativo utiliza <code>qgis_process</code>, <code>gdal_translate</code> e <code>gdalinfo</code> fornecidos pelo QGIS/OSGeo4W.</span></li>
+            <li><i class="fa-solid fa-check"></i><span><strong>Espaço livre em disco.</strong> Durante uma reprojeção seguida de compressão podem existir arquivos temporários e de saída ao mesmo tempo.</span></li>
+            <li><i class="fa-solid fa-check"></i><span><strong>Permissão de escrita.</strong> A pasta onde estão as imagens precisa permitir a criação de novos arquivos.</span></li>
+          </ul>
+          <div class="notice warning"><i class="fa-solid fa-triangle-exclamation"></i><p>O TiffTools Pro não inclui o QGIS nem o GDAL dentro do executável. Instale o QGIS primeiro e mantenha a instalação disponível enquanto utilizar o aplicativo.</p></div>
+        </section>
+
+        <section id="primeiros-passos" class="manual-section">
+          <p class="section-kicker">04 · Primeiros passos</p>
+          <h2>Abra o aplicativo pela primeira vez</h2>
+          <ol class="steps">
+            <li><span>1</span><div><strong>Crie uma pasta para o aplicativo.</strong><p>Por exemplo, <code>C:\Ferramentas\TiffToolsPro</code>. Evite executar diretamente da pasta temporária do navegador.</p></div></li>
+            <li><span>2</span><div><strong>Mova o arquivo baixado.</strong><p>Coloque somente <code>TiffToolsPro.exe</code> nessa pasta. O arquivo de configuração será criado automaticamente quando necessário.</p></div></li>
+            <li><span>3</span><div><strong>Abra com dois cliques.</strong><p>A tela inicial apresenta os botões <b>Comprimir TIFF</b>, <b>Reprojetar TIFF</b> e <b>Configurar QGIS</b>.</p></div></li>
+            <li><span>4</span><div><strong>Configure o QGIS antes do primeiro processamento.</strong><p>A detecção costuma ser automática, mas deve ser conferida.</p></div></li>
+          </ol>
+        </section>
+
+        <section id="configuracao" class="manual-section">
+          <p class="section-kicker">05 · Configuração</p>
+          <h2>Conecte o TiffTools Pro ao QGIS</h2>
+          <ol class="steps compact">
+            <li><span>1</span><div><strong>Clique em “Configurar QGIS”.</strong><p>Será exibido o campo Caminho selecionado.</p></div></li>
+            <li><span>2</span><div><strong>Use “Auto Detectar”.</strong><p>Se uma instalação válida for encontrada, confirme o caminho mostrado.</p></div></li>
+            <li><span>3</span><div><strong>Se necessário, clique em “Procurar”.</strong><p>Selecione um arquivo como <code>qgis_process-qgis-ltr.bat</code>, <code>qgis_process-qgis.bat</code> ou equivalente.</p></div></li>
+            <li><span>4</span><div><strong>Clique em “Salvar e Voltar”.</strong><p>A configuração fica registrada para os próximos usos.</p></div></li>
+          </ol>
+          <h3>Locais comuns</h3>
+          <div class="code-list"><code>C:\Program Files\QGIS 3.xx.x\bin\qgis_process-qgis-ltr.bat</code><code>C:\OSGeo4W\bin\qgis_process-qgis-ltr.bat</code></div>
+          <div class="notice neutral"><i class="fa-solid fa-lightbulb"></i><p>Se houver mais de uma versão do QGIS, prefira a instalação que você utiliza no trabalho. Não selecione o atalho do QGIS da área de trabalho; selecione o arquivo <code>qgis_process</code> dentro da pasta <code>bin</code>.</p></div>
+        </section>
+
+        <section id="usar" class="manual-section">
+          <p class="section-kicker">06 · Compressão</p>
+          <h2>Como comprimir imagens TIFF</h2>
+          <ol class="steps">
+            <li><span>1</span><div><strong>Na tela inicial, clique em “Comprimir TIFF”.</strong></div></li>
+            <li><span>2</span><div><strong>Clique em “Selecionar Arquivos”.</strong><p>Você pode selecionar um ou vários TIFFs. Eles serão processados em sequência.</p></div></li>
+            <li><span>3</span><div><strong>Mantenha “Somente comprimir”.</strong><p>Use esta opção quando não precisar alterar o sistema de coordenadas.</p></div></li>
+            <li><span>4</span><div><strong>Clique em “INICIAR PROCESSO”.</strong><p>Acompanhe o nome do arquivo, o tempo e o tamanho antes/depois no painel de logs.</p></div></li>
+            <li><span>5</span><div><strong>Abra a pasta e confira o resultado.</strong><p>O original permanece intacto. A nova imagem recebe o sufixo <code>_jpeg.tif</code>.</p></div></li>
+          </ol>
+          <div class="notice danger"><i class="fa-solid fa-image"></i><p><strong>A compressão JPEG altera valores de pixels.</strong> Ela é indicada principalmente para imagens RGB, como ortofotos e imagens de satélite. Não use este modo em modelos de elevação, mapas classificados, máscaras, rasters temáticos ou dados científicos nos quais o valor exato de cada pixel precise ser preservado.</p></div>
+        </section>
+
+        <section id="reprojetar" class="manual-section">
+          <p class="section-kicker">07 · Reprojeção</p>
+          <h2>Como alterar o sistema de coordenadas</h2>
+          <ol class="steps">
+            <li><span>1</span><div><strong>Na tela inicial, clique em “Reprojetar TIFF”.</strong></div></li>
+            <li><span>2</span><div><strong>Selecione os TIFFs.</strong><p>O aplicativo tenta identificar o EPSG do primeiro arquivo.</p></div></li>
+            <li><span>3</span><div><strong>Confira o CRS de origem.</strong><p>Deixe Origem vazio quando o arquivo já estiver corretamente georreferenciado. Informe um EPSG de origem somente para corrigir um CRS ausente ou incorreto e apenas quando tiver certeza.</p></div></li>
+            <li><span>4</span><div><strong>Escolha o CRS de destino.</strong><p>Pesquise pelo código EPSG ou pelo nome. Por exemplo, SIRGAS 2000 geográfico é <code>EPSG:4674</code>.</p></div></li>
+            <li><span>5</span><div><strong>Escolha o modo.</strong><p><b>Apenas reprojetar</b> cria a saída sem a etapa JPEG. <b>Reprojetar e comprimir</b> executa o fluxo completo recomendado.</p></div></li>
+            <li><span>6</span><div><strong>Inicie e valide no QGIS.</strong><p>A saída recebe o sufixo <code>_convertida.tif</code>.</p></div></li>
+          </ol>
+          <div class="workflow"><div><span>1</span><b>TIFF original</b></div><i class="fa-solid fa-arrow-right"></i><div><span>2</span><b>Reprojetar</b></div><i class="fa-solid fa-arrow-right"></i><div><span>3</span><b>Comprimir</b></div><i class="fa-solid fa-arrow-right"></i><div><span>4</span><b>Validar no QGIS</b></div></div>
+          <p><strong>Recomendação:</strong> quando as duas operações forem necessárias, entre em <b>Reprojetar TIFF</b> e escolha <b>Reprojetar e comprimir</b>. Assim a reprojeção ocorre antes da compressão final.</p>
+        </section>
+
+        <section id="imagens-pesadas" class="manual-section">
+          <p class="section-kicker">08 · Desempenho</p>
+          <h2>Boas práticas para imagens muito grandes</h2>
+          <div class="practice-grid">
+            <div><span>01</span><h3>Use disco local</h3><p>Copie os TIFFs para um SSD local antes de processar. Redes e unidades USB lentas aumentam o tempo e o risco de interrupção.</p></div>
+            <div><span>02</span><h3>Reserve espaço</h3><p>Mantenha, como margem segura, pelo menos duas a três vezes o tamanho dos arquivos de entrada livre na unidade.</p></div>
+            <div><span>03</span><h3>Reduza a concorrência</h3><p>Feche aplicações pesadas. O TiffTools processa a seleção sequencialmente, evitando iniciar vários GDALs ao mesmo tempo.</p></div>
+            <div><span>04</span><h3>Evite etapas repetidas</h3><p>Quando precisar reprojetar e comprimir, use o fluxo combinado uma única vez para diminuir processamento e perdas sucessivas.</p></div>
+            <div><span>05</span><h3>Conserve o original</h3><p>Não exclua a imagem de origem antes de abrir a saída no QGIS e verificar extensão, CRS, cores e nitidez.</p></div>
+            <div><span>06</span><h3>Comece com uma amostra</h3><p>Teste primeiro um arquivo representativo. Compare tamanho e qualidade antes de processar todo o lote.</p></div>
+          </div>
+          <div class="notice neutral"><i class="fa-solid fa-gauge-high"></i><p>A compressão reduz principalmente o espaço ocupado no disco. A organização <i>tiled</i> também favorece leituras por blocos, mas o consumo de memória durante a abertura depende do QGIS, do tamanho da imagem, da resolução, do número de bandas e do computador.</p></div>
+        </section>
+
+        <section id="resultados" class="manual-section">
+          <p class="section-kicker">09 · Saídas</p>
+          <h2>Onde ficam os arquivos gerados?</h2>
+          <p>As saídas são criadas na mesma pasta dos arquivos selecionados. O original não é sobrescrito.</p>
+          <div class="result-table" role="table" aria-label="Nomes dos arquivos de saída">
+            <div class="table-row table-head" role="row"><span>Operação</span><span>Entrada</span><span>Saída</span></div>
+            <div class="table-row" role="row"><span>Comprimir</span><code>mosaico.tif</code><code>mosaico_jpeg.tif</code></div>
+            <div class="table-row" role="row"><span>Reprojetar</span><code>mosaico.tif</code><code>mosaico_convertida.tif</code></div>
+          </div>
+          <p>Na compressão também pode ser criado um arquivo <code>.tfw</code> como informação auxiliar de georreferenciamento. Mantenha-o junto do TIFF quando mover os resultados.</p>
+        </section>
+
+        <section id="problemas" class="manual-section">
+          <p class="section-kicker">10 · Diagnóstico</p>
+          <h2>Solução de problemas</h2>
+          <details><summary>O aplicativo informa que o caminho do QGIS é inválido.</summary><p>Abra <b>Configurar QGIS</b>, tente <b>Auto Detectar</b> e, se necessário, selecione manualmente o arquivo <code>qgis_process</code> dentro da pasta <code>bin</code> da sua instalação.</p></details>
+          <details><summary>A compressão ou a reprojeção termina com erro.</summary><p>Leia as últimas linhas do painel Status e Logs. Confirme espaço livre, permissão de escrita, caminho do QGIS e se o TIFF abre normalmente no QGIS.</p></details>
+          <details><summary>O CRS de entrada aparece como desconhecido.</summary><p>Abra o arquivo no QGIS e confira as propriedades da camada. Se você souber com segurança o CRS correto, informe-o no campo Origem. Não escolha um EPSG por tentativa.</p></details>
+          <details><summary>Recebo “Acesso negado”.</summary><p>Mova os dados para uma pasta do usuário, como Documentos, e tente novamente. Evite pastas protegidas do Windows e confira se o arquivo de saída não está aberto em outro programa.</p></details>
+          <details><summary>O processo demora muito ou parece parado.</summary><p>TIFFs grandes podem exigir bastante leitura e escrita em disco. Observe o tempo e os logs, mantenha espaço livre e evite rede ou unidade externa lenta. Interromper o aplicativo durante a escrita pode deixar uma saída incompleta.</p></details>
+          <details><summary>A saída ficou com qualidade inadequada.</summary><p>A compressão JPEG é com perdas. Volte ao original e utilize somente reprojeção, ou preserve o TIFF original para fluxos que dependem de fidelidade radiométrica.</p></details>
+        </section>
+
+        <section id="seguranca" class="manual-section">
+          <p class="section-kicker">11 · Segurança</p>
+          <h2>Verifique a integridade do download</h2>
+          <p>Esta compilação ainda não possui assinatura digital de editor. Por isso, o Windows pode apresentar o aviso de aplicativo não reconhecido. Baixe apenas pelos links oficiais e confira o SHA-256 antes de executar.</p>
+          <div class="hash-box"><div><span>SHA-256</span><code id="download-hash">FA70844B016466B4102F4CC78CFA4D6950D4E2AA2C65411F4781066DA5BD77D7</code></div><button type="button" data-copy-hash><i class="fa-regular fa-copy"></i> Copiar</button></div>
+          <p>No PowerShell, abra a pasta do arquivo e execute:</p>
+          <pre><code>Get-FileHash .\TiffToolsPro.exe -Algorithm SHA256</code></pre>
+          <p>O valor exibido deve ser exatamente igual ao informado acima. Se for diferente, não execute o arquivo e faça o download novamente.</p>
+          <div class="notice warning"><i class="fa-solid fa-shield-halved"></i><p>Não desative o antivírus para usar a ferramenta. Se o Windows mostrar o SmartScreen, confirme primeiro a origem e o hash do arquivo. A decisão de executar deve ser tomada somente depois dessa verificação.</p></div>
+        </section>
+      </article>
+    </div>
+
+    <section class="manual-cta">
+      <div><p class="eyebrow">Pronto para começar?</p><h2>Baixe, configure o QGIS e teste primeiro com uma imagem de amostra.</h2></div>
+      <a class="button light" href="../downloads/TiffToolsPro.exe" download><i class="fa-solid fa-download"></i> Baixar TiffTools Pro</a>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="../"><img src="../icon_istools.png" alt=""><span>ISTools</span></a><p>Geoinformação aberta para QGIS.</p><div><a href="../">Página inicial</a><a href="../docs/">Documentação do plugin</a><a href="https://github.com/irlansouza93/istools-website/blob/main/downloads/TiffToolsPro.exe" target="_blank" rel="noreferrer">GitHub</a></div></footer>
+  <script src="tifftools.js"></script>
+</body>
+</html>

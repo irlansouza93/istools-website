@@ -34,7 +34,7 @@
     <a class="brand" href="#inicio"><img src="icon_istools.png" alt="ISTools"><span>ISTools</span></a>
     <button class="menu-button" aria-label="Abrir menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
     <nav class="main-nav" aria-label="Navegacao principal">
-      <a href="#ecossistema">Ecossistema</a><a href="#edgv">EDGV</a><a href="#download">Download</a><a href="docs/index.html">Documentacao</a>
+      <a href="#ecossistema">Ecossistema</a><a href="#tifftools">TiffTools</a><a href="#edgv">EDGV</a><a href="#download">Download</a><a href="docs/index.html">Documentacao</a>
       <button class="theme-toggle" aria-label="Alternar modo escuro"><i class="fa-solid fa-moon"></i></button><a class="nav-github" href="https://github.com/irlansouza93/istools" target="_blank" rel="noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
     </nav>
   </header>
@@ -46,7 +46,7 @@
         <h1 class="kinetic-title"><span class="type-line" data-text="Irlan Souza Tools"></span><strong class="headline-reveal"><span>Ferramentas que agilizam</span><em>a Geoinformação.</em></strong></h1>
         <p class="lead">O ISTools evoluiu de um conjunto de utilitarios de vetorizacao para uma plataforma em desenvolvimento continuo: edicao geometrica, banco de dados, processamento e fluxos EDGV em um unico plugin.</p>
         <div class="hero-actions"><a class="button primary" href="docs/index.html"><i class="fa-solid fa-book-open"></i> Explorar documentacao</a><a class="button quiet" href="https://github.com/irlansouza93/istools" target="_blank" rel="noreferrer"><i class="fa-brands fa-github"></i> Ver projeto no GitHub</a></div>
-        <div class="hero-meta"><span><b>QGIS 3.24+</b> compatibilidade</span><span><b>GPL v2</b> codigo aberto</span><span><b>v1.5.1</b> release atual</span></div>
+        <div class="hero-meta"><span><b>QGIS 3.24+</b> compatibilidade</span><span><b>GPL v2</b> codigo aberto</span><span><b>v1.5.3</b> release atual</span></div>
       </div>
       <div class="earth-shell reveal" aria-label="Globo 3D interativo"><div id="geo-globe"></div><div class="globe-caption"><span class="live-dot"></span><b>Globo topologico</b><small>Globe.gl</small></div></div>
     </section>
@@ -65,6 +65,21 @@
       </div>
     </section>
 
+    <section id="tifftools" class="external-tool-section">
+      <div class="external-tool-art reveal">
+        <div class="external-tool-icon"><img src="assets/tifftools.png" alt="Ícone do TiffTools Pro"></div>
+        <span class="external-badge"><i class="fa-brands fa-windows"></i> Aplicativo Windows x64</span>
+      </div>
+      <div class="external-tool-copy reveal">
+        <p class="eyebrow">Ferramenta externa do ecossistema</p>
+        <h2>TiffTools Pro para imagens TIFF muito pesadas.</h2>
+        <p>Aplicativo independente para comprimir e reprojetar GeoTIFFs com o GDAL instalado pelo QGIS. Foi desenvolvido para reduzir o tamanho em disco e facilitar a manipulação de imagens grandes, inclusive em computadores com menor capacidade de memória.</p>
+        <ul><li><i class="fa-solid fa-check"></i> Processamento de um ou vários TIFFs</li><li><i class="fa-solid fa-check"></i> Compressão JPEG com GeoTIFF em blocos</li><li><i class="fa-solid fa-check"></i> Reprojeção por código EPSG</li></ul>
+        <div class="external-actions"><a class="button primary" href="tifftools/"><i class="fa-solid fa-book-open"></i> Download e manual completo</a><a class="button repository" href="https://github.com/irlansouza93/istools-website/blob/main/downloads/TiffToolsPro.exe" target="_blank" rel="noreferrer"><i class="fa-brands fa-github"></i> Baixar pelo GitHub</a></div>
+        <p class="external-note"><i class="fa-solid fa-arrow-up-right-from-square"></i> O TiffTools Pro não é executado dentro do plugin. O menu do ISTools apenas direciona para sua página oficial.</p>
+      </div>
+    </section>
+
     <section id="edgv" class="edgv-section">
       <div class="edgv-copy reveal"><p class="eyebrow"><span></span> Destaque tecnico</p><h2>EDGV 3.0 para EDGV Topo 1.4.5, agora dentro do QGIS.</h2><p>Um fluxo que antes dependia de um conversor baseado em FME agora pode ser executado no proprio QGIS com o ISTools. A conversao preserva a logica de mapeamento e aproxima a rotina do ambiente de trabalho de quem produz e revisa os dados.</p><ul><li><i class="fa-solid fa-check"></i> Menos etapas externas no processo</li><li><i class="fa-solid fa-check"></i> Fluxo rastreavel e acessivel no Processing</li><li><i class="fa-solid fa-check"></i> Evolucao aberta para necessidades reais</li></ul><a class="button primary" href="docs/index.html#edgv"><i class="fa-solid fa-arrow-right-arrow-left"></i> Ver guia de conversao</a></div>
       <div class="conversion-card reveal"><div class="conversion-title">Pipeline de conversao</div><div class="conversion-flow"><div><span class="schema-chip">EDGV</span><b>EDGV 3.0</b><small>camadas de origem</small></div><i class="fa-solid fa-arrow-right-long"></i><div class="process-node"><i class="fa-solid fa-gears"></i><b>ISTools</b><small>QGIS Processing</small></div><i class="fa-solid fa-arrow-right-long"></i><div><span class="schema-chip topo">TOPO</span><b>EDGV Topo 1.4.5</b><small>base convertida</small></div></div><p><i class="fa-solid fa-circle-info"></i> Consulte os requisitos e a sequencia recomendada na documentacao.</p></div>
@@ -79,7 +94,7 @@
 
     <section id="autor" class="author-section"><div class="author-photo author-photo-desktop reveal"><img class="author-light" src="assets/author-light.png" alt="Irlan Souza"><img class="author-dark" src="assets/author-dark.jpg" alt="Irlan Souza em composição para o modo escuro"></div><div class="author-copy reveal"><div class="author-heading"><div class="author-avatar"><img class="author-light" src="assets/author-light.png" alt="Irlan Souza"><img class="author-dark" src="assets/author-dark.jpg" alt="Irlan Souza em composição para o modo escuro"></div><div><p class="eyebrow">Quem constroi</p><h2>Irlan Souza</h2></div></div><p class="rank">2&ordm; Sargento do Exercito Brasileiro &middot; Desenvolvedor GIS</p><p>Desenvolvedor e profissional de geoinformacao dedicado a transformar problemas recorrentes de producao cartografica em ferramentas abertas, praticas e acessiveis para a comunidade QGIS.</p><div class="author-links"><a href="mailto:irlansouza193@gmail.com"><i class="fa-solid fa-envelope"></i> Contato</a><a href="https://github.com/irlansouza93" target="_blank" rel="noreferrer"><i class="fa-brands fa-github"></i> GitHub</a></div></div></section>
   </main>
-  <footer><a class="brand" href="#inicio"><img src="icon_istools.png" alt=""><span>ISTools</span></a><p>Geoinformacao aberta para QGIS.</p><div><a href="https://plugins.qgis.org/plugins/istools/" target="_blank" rel="noreferrer">QGIS Plugins</a><a href="docs/">Documentacao</a><a href="https://github.com/irlansouza93/istools/issues" target="_blank" rel="noreferrer">Suporte</a></div></footer>
+  <footer><a class="brand" href="#inicio"><img src="icon_istools.png" alt=""><span>ISTools</span></a><p>Geoinformacao aberta para QGIS.</p><div><a href="https://plugins.qgis.org/plugins/istools/" target="_blank" rel="noreferrer">QGIS Plugins</a><a href="docs/">Documentacao</a><a href="tifftools/">TiffTools Pro</a><a href="https://github.com/irlansouza93/istools/issues" target="_blank" rel="noreferrer">Suporte</a></div></footer>
   <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
   <script src="script.js"></script>
 </body>
